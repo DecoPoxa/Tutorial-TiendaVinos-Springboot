@@ -16,9 +16,9 @@ import com.uva.users.model.VinoConRelacion;
 import com.uva.users.Exception.BodegaException;
 import com.uva.users.Exception.VinoException;
 
-@RestController
-@RequestMapping("/TiendaVinos")
 @CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/TiendaVinos/")
 class VinoController {
 
     private final VinoRepository repository;
