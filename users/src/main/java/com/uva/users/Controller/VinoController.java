@@ -15,6 +15,10 @@ import com.uva.users.model.Vino;
 import com.uva.users.model.VinoConRelacion;
 import com.uva.users.Exception.BodegaException;
 import com.uva.users.Exception.VinoException;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -106,7 +110,7 @@ class VinoController {
         }
     }
 
-    @GetMapping("/conseguirVinos")
+    @GetMapping("/vinos")
     public List<Vino> conseguirVinos() {
         return repository.findAll();
     }
@@ -196,4 +200,24 @@ class VinoController {
         return repository2.findById(id);
     }
 
+    //Tutorial 1.8 Delete Vino
+    @DeleteMapping ("/vinos/{id}")
+    public void deleteVino(@PathVariable Integer id){
+        //deletes vino with id
+        repository.deleteById(id);
+    }
+
+    //Tutorial 1.8 Get Vino
+    @GetMapping (value = "/vinos/{id}", produces = "application/json") 
+    public Optional<Vino> getVino(@PathVariable Integer id){
+        //Gets vino with id
+        return repository.findById(id);
+    }
+
+    //Tutorial 1.8 Update vino
+    @PutMapping("vinos/{id}")
+    public void updateVino(@PathVariable String id, @RequestBody Vino vinoUpdated) {
+        //TODO: process PUT request
+        repository.save(vinoUpdated);
+    }
 }
